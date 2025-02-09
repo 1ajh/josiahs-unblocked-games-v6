@@ -10,8 +10,8 @@
     <meta name="author" content="3kh0" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="shortcut-icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon123.png" />
+    <link rel="shortcut-icon" href="/favicon123.png" />
     <script src="/js/main.js"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
@@ -19,6 +19,7 @@
         background-color: #7435b8;
         color: #ffffff;
         font-family: "Inter", serif;
+        overflow-x: hidden;
       }
       * {
         font-family: "Inter", serif;
@@ -29,6 +30,12 @@
         width: 100%;
         height: 100%;
         z-index: -1;
+    }
+
+    @media screen and (max-width: 768px) {
+      body {
+        overflow-x: scroll;
+      }
     }
 
     p {
@@ -59,6 +66,10 @@ button {
   height: 25em;
   width: 18.75em;
   border-radius: 1.875em;
+  transition: 0.3s;
+}
+.game-tile:hover {
+  transform: scale(1.05);
 }
 .game-icon {
   border-radius: 1.875em;
@@ -101,9 +112,8 @@ p.centered-text {
     </style>
   </head>
   <body>
-    <div id="particles-js"></div>    <script src="/particles-config.js"></script>
-
-    <h1 style="font-size: 3em; text-align: center;">Projects</h1>
+    <div id="particles-js"></div>
+    <h1 style="font-size: 3em; text-align: center;">Josiah's Unblocked Games V6    </h1>
     <p class="centered-text">
     <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for games..." style="width: 100%; font-size: 18px; padding: 6px 20px; margin: auto; border-radius: 30px; max-width: 600px; margin-bottom: 10px; background: rgba(0,0,0,0.5);border:none;padding:1em;" />
   </p>
@@ -172,7 +182,7 @@ p.centered-text {
         document.documentElement.scrollTop = 0;
       };
     </script>
-      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/particles-config.js"></script>
   </body>
 </html>

@@ -77,7 +77,7 @@ factoryBackground.png
 farm.png
 farmBackground.png
 farmerGrandma.png
-favicon.ico
+favicon123.png
 featherLeft.png
 featherRight.png
 filler.png

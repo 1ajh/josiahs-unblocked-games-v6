@@ -2,7 +2,7 @@
 <html lang="en-US">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon123.png" />
     <link rel="stylesheet" href="/css/style.css" />
     <meta name="keywords" content="front-end web developer, unblocked, games, google sites, unblocked games mom, ublocked, code, coding, programmer, development, javascript, jquery, bootstrap, sass, less, git" />
     <meta property="og:title" content="Welcome to Josiah's Unblocked Games V6, a lightweight, fast, and clean game site." />
@@ -11,10 +11,10 @@
     <meta name="description" content="Welcome to Josiah's Unblocked Games V6, a lightweight, fast, and clean game site." />
     <meta name="author" content="3kh0" />
     <meta charset="UTF-8" />
-    <title>Josiah's Unblocked Games V6</title>
+    <title>Home</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body style="overflow-y: hidden;">
+  <body style="overflow-y: hidden;" id="homethinglol">
     <div id="particles-js"></div>
     <h1>Josiah's Unblocked Games V6</h1>
     <p class="centered-text homeflex">
@@ -22,11 +22,29 @@
       </a><br /><br />
       <a href="/misc.html"><i class="bi bi-sliders"></i>
       </a>
+      <button id="open-blank">about:blank</button>
     </p>
 
     <script src="/js/main.js"></script>
     <script src="/js/subtitle.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="/particles-config.js"></script>
+    <script>
+      document.getElementById("open-blank").addEventListener("click", function() {
+        const newTab = window.open("about:blank");
+        if (newTab) {
+          newTab.document.write(`
+            <style>
+              * { margin: 0; padding: 0; border: 0; }
+              html, body { width: 100vw; height: 100vh; overflow: hidden; background: black; }
+              iframe { width: 100vw; height: 100vh; display: block; outline: none; }
+            </style>
+            <base target="_blank">
+            <iframe src="${location.href}"></iframe>
+          `);
+          newTab.document.close();
+        }
+      });
+    </script>
   </body>
 </html>
