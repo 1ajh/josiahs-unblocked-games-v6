@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Projects  </title>
+    <meta name="keywords" content="front-end web developer, unblocked, games, google sites, unblocked games mom, ublocked, code, coding, programmer, development, javascript, jquery, bootstrap, sass, less, git" />
+    <meta property="og:title" content="Welcome to Josiah's Unblocked Games V6, a lightweight, fast, and clean game site." />
+    <meta property="og:site_name" content="3kh0.github.io" />
+    <meta property="og:description" content="Welcome to Josiah's Unblocked Games V6, a lightweight, fast, and clean game site." />
+    <meta name="description" content="Welcome to Josiah's Unblocked Games V6, a lightweight, fast, and clean game site." />
+    <meta name="author" content="3kh0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="shortcut-icon" href="/favicon.ico" />
+    <script src="/js/main.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+          body {
+        background-color: #7435b8;
+        color: #ffffff;
+        font-family: "Inter", serif;
+      }
+      * {
+        font-family: "Inter", serif;
+      }
+      
+      #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    p {
+  text-align: center;
+  max-width: 37.5em;
+  margin: 1.25em auto;
+}
+button {
+  cursor: pointer;
+  background-color: #22c55e;
+  border: none;
+  color: white;
+  padding: 0.9375em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  border-radius: 1.25em;
+  margin-top: 1.25em;
+}
+.game-link {
+  height: 25em;
+  width: 18.75em;
+  text-decoration: none;
+}
+.game-tile {
+  background-color: transparent;
+  height: 25em;
+  width: 18.75em;
+  border-radius: 1.875em;
+}
+.game-icon {
+  border-radius: 1.875em;
+  width: 18.75em;
+  height: 18.75em;
+}
+.game-title {
+  font-size: 1.875em;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  margin: auto;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  order: 0;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  padding: 0.625em;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+p.centered-text {
+  text-align: center;
+  max-width: 37.5em;
+  margin: 1.25em auto;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="particles-js"></div>    <script src="/particles-config.js"></script>
+
+    <h1 style="font-size: 3em; text-align: center;">Projects</h1>
+    <p class="centered-text">
+    <input type="text" id="search" onkeyup="searchGames()" placeholder="Search for games..." style="width: 100%; font-size: 18px; padding: 6px 20px; margin: auto; border-radius: 30px; max-width: 600px; margin-bottom: 10px; background: rgba(0,0,0,0.5);border:none;padding:1em;" />
+  </p>
+    <div id="loader" style="display: block; border: 16px solid #f3f3f3; border-top: 16px solid #3498db; border-radius: 50%; width: 120px; height: 120px; animation: spin 0.3s linear infinite; margin: auto; margin-top: 1rem;"></div>
+    <div id="game-container" class="flex-container"></div>
+    <p class="text-center">
+      <a href="/index.html" style="text-decoration: none;">
+        <button style="cursor: pointer; background-color: #b625cc; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 20px; margin-top: 5px;">
+          Go to the homepage
+        </button>
+      </a>
+    </p>
+    <button id="back-to-top" style="display: none; position: fixed; bottom: 20px; right: 20px;">Back to top</button>
+    <script>
+      let games = [];
+      fetch("config/games.json")
+      .then((response) => response.json())
+      .then((data) => {
+        games = data;
+        const container = document.getElementById("game-container");
+        data.forEach((project) => {
+          const game = document.createElement("a");
+          game.href = project.link;
+            game.className = "game-link container";
+            game.innerHTML = `
+            <div class="game-tile">
+              <img class="game-icon" src="${project.imgSrc}" alt="icon" />
+              <p class="game-title">${project.title}</p>
+              </div>`;
+              container.appendChild(game);
+          });
+          document.getElementById("loader").style.display = "none";
+        })
+        .catch((error) => console.error("Error:", error));
+
+      function searchGames() {
+        const input = document.getElementById("search");
+        const filter = input.value.toUpperCase();
+        const container = document.getElementById("game-container");
+        container.innerHTML = "";
+        games
+          .filter((game) => game.title.toUpperCase().includes(filter))
+          .forEach((project) => {
+            const game = document.createElement("a");
+            game.href = project.link;
+            game.className = "game-link container";
+            game.innerHTML = `
+            <div class="game-tile">
+              <img class="game-icon" src="${project.imgSrc}" alt="icon" loading="lazy" />
+              <p class="game-title">${project.title}</p>
+              </div>`;
+            container.appendChild(game);
+          });
+        }
+        const backToTopButton = document.getElementById('back-to-top');
+        window.onscroll = function () {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+          } else {
+          backToTopButton.style.display = "none";
+        }
+      };
+
+      backToTopButton.onclick = function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      };
+    </script>
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  </body>
+</html>
